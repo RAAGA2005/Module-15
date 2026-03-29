@@ -22,15 +22,53 @@ To write a Python program to build and evaluate the given Expression tree.
 ## PROGRAM:
 
 ```
-from binarytree import build,Node
-x=['/','*','+','+',4,'-',2,3,1,None,None,9,5]
-t=build(x)
-print(t.inorder)
-print(t.postorder)
+class Node:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+ 
+
+def isLeaf(node):
+    return node.left is None and node.right is None
+ 
+def process(op, x, y):
+    if op == '+':
+        return x + y
+    if op == '-':
+        return x - y
+    if op == '*':
+        return x * y
+    if op == '/':
+        return x / y
+ 
+def evaluate(root):
+
+    if root is None:
+        return 0
+  
+    if isLeaf(root):
+        return float(root.val)
+    
+    x = evaluate(root.left)
+    y = evaluate(root.right)
+    return (process(root.val, x, y))
+    
+
+
+root = Node('+')
+root.left = Node('*')
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(8)
+
+ 
+print('The value of the expression tree is',evaluate(root))
 ```
 
 ## OUTPUT:
-<img width="1151" height="249" alt="image" src="https://github.com/user-attachments/assets/bd7b7268-3422-4a7f-adb3-85891ba88674" />
+<img width="1150" height="202" alt="image" src="https://github.com/user-attachments/assets/e883b2bd-8050-49df-9b36-5959123304c5" />
+
 
 
 ## RESULT:

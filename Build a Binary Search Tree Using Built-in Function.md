@@ -22,8 +22,7 @@ To write a Python program to build a binary search tree using a built-in functio
 ## PROGRAM:
 
 ```python
-#Reg.No:212222060253
-#Name: SRIJAYAN T
+
 from binarytree import Node
 def _build_bst_from_sorted_values(sorted_values):
     if len(sorted_values) == 0:
